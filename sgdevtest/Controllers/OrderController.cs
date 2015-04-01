@@ -19,12 +19,18 @@ namespace sgdevtest.Controllers
         public ActionResult Index(OrderSearch search)
         {
             var searchItem = Search(search);
-        
+
+            var createViewModel = new CreateViewModel
+            {
+                Customers = db.Customers.Select(c => new { ID = c.ID, Name = c.Lastname + ", " + c.Firstname }).ToDictionary(c => c.ID, c => c.Name),
+                Products = db.Products.Select(c => new { ID = c.ID, Name = c.Name }).ToDictionary(c => c.ID, c => c.Name)
+            };
+
+            ViewBag.Create = createViewModel;
             ViewBag.OrderSearch = search;
 
             return View(searchItem.ToList());
         }
-        //
         private IQueryable<OrderItemViewModel> Search(OrderSearch search)
         {//
             var orderItem = from oi in db.OrderItems

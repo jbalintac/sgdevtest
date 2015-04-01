@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Index";
     sgdevtest.Models.OrderSearch search = ViewBag.OrderSearch;
+    sgdevtest.Models.CreateViewModel create = ViewBag.Create;
 }
 
 <h2>Orders</h2>
@@ -27,7 +28,7 @@
                     <label>Customer Name</label>
                 </div>
                 <div class="col-md-8">
-                    @Html.TextBoxFor(t => search.CustomerSearch)
+                    @Html.DropDownListFor(model => search.CustomerSearch, new SelectList(create.Customers, "Value", "Value"))
                 </div>
             </div>
 
@@ -45,7 +46,7 @@
                     <label>Product</label>
                 </div>
                 <div class="col-md-8">
-                    @Html.TextBoxFor(t => search.ProductSearch)
+                    @Html.DropDownListFor(model => search.ProductSearch, new SelectList(create.Products, "Value", "Value"))
                 </div>
             </div>
             <div class="row">
