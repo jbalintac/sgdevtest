@@ -19,14 +19,14 @@ namespace sgdevtest.Controllers
         public ActionResult Index(OrderSearch search)
         {
             var searchItem = Search(search);
-            //
+        
             ViewBag.OrderSearch = search;
 
             return View(searchItem.ToList());
         }
-
+        //
         private IQueryable<OrderItemViewModel> Search(OrderSearch search)
-        {
+        {//
             var orderItem = from oi in db.OrderItems
                             join p in db.Products on oi.ProductID equals p.ID
                             group new { oi, p } by new { oi.OrderID } into grp
