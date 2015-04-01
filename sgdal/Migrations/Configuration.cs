@@ -1,5 +1,3 @@
-
-
 namespace sgdal.Migrations
 {
     using System;
@@ -15,6 +13,7 @@ namespace sgdal.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(sgdal.SgContext context)
