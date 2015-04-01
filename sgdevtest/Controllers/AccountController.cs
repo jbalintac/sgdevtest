@@ -66,6 +66,11 @@ namespace sgdevtest.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Order");
+            }
+
             return View();
         }
 

@@ -1,0 +1,114 @@
+﻿@model IEnumerable<sgdevtest.Models.OrderItemViewModel>
+
+@{
+    ViewBag.Title = "Index";
+    sgdevtest.Models.OrderSearch search = ViewBag.OrderSearch;
+}
+
+<h2>Orders</h2>
+
+
+<div class="row">
+    @using (Html.BeginForm("Index", "Order", FormMethod.Post))
+    {
+        <div class="col-md-4">
+
+            <div class="row">
+                <div class="col-md-4">
+                    <label>Order Number</label>
+                </div>
+                <div class="col-md-8">
+                    @Html.TextBoxFor(t => search.IdSearch)
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <label>Customer Name</label>
+                </div>
+                <div class="col-md-8">
+                    @Html.TextBoxFor(t => search.CustomerSearch)
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <label>Cost</label>
+                </div>
+                <div class="col-md-8">
+                    @Html.TextBoxFor(t => search.TotalSearch)
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <label>Order Number</label>
+                </div>
+                <div class="col-md-8">
+                    @Html.TextBoxFor(t => search.ProductSearch)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="submit" class="btn btn-default" value="Search" />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+
+            @Html.Hidden("SortField", search.SortField)
+            @Html.Hidden("SortDirection", search.SortDirection)
+
+            <table id="sg-order" class="table">
+                <tr>
+                    <th a href="#" data-sortfield="OrderItemID"
+                        class="header">
+                        @Html.DisplayNameFor(model => model.OrderItemID)
+                    </th>
+                    <th a href="#" data-sortfield="Date"
+                        class="header">
+                        @Html.DisplayNameFor(model => model.Date)
+                    </th>
+                    <th a href="#" data-sortfield="CustomerName"
+                        class="header">
+                        @Html.DisplayNameFor(model => model.CustomerName)
+                    </th>
+                    <th a href="#" data-sortfield="Count"
+                        class="header">
+                        @Html.DisplayNameFor(model => model.Count)
+                    </th>
+                    <th a href="#" data-sortfield="Total"
+                        class="header">
+                        @Html.DisplayNameFor(model => model.Total)
+                    </th>
+                </tr>
+
+                @if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.ActionLink(item.OrderItemID.ToString(), "Details", new { id = item.OrderItemID })
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Date)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CustomerName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Count)
+                            </td>
+                            <td>
+                                $@Html.DisplayFor(modelItem => item.Total)
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </table>
+        </div>
+    }
+</div>
