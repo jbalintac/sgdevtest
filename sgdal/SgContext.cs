@@ -6,7 +6,8 @@ namespace sgdal
 {
     public class SgContext : DbContext
     {
-        public SgContext() : base("SgContext")
+        public SgContext()
+            : base("SgContext")
         {
         }
 
@@ -17,6 +18,7 @@ namespace sgdal
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<SgContext, sgdal.Migrations.Configuration>());
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
     }
