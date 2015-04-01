@@ -86,8 +86,8 @@ namespace sgdevtest.Controllers
                 searchItem = searchItem.Where(s => s.CustomerName == search.CustomerSearch);
             }
 
-            var totalSearchVal = default(int);
-            var isTotalSearchInt = int.TryParse(search.TotalSearch, out totalSearchVal);
+            var totalSearchVal = default(decimal);
+            var isTotalSearchInt = decimal.TryParse(search.TotalSearch, out totalSearchVal);
             if (!string.IsNullOrWhiteSpace(search.TotalSearch) && isTotalSearchInt)
             {
                 searchItem = searchItem.Where(s => s.Total == totalSearchVal);
