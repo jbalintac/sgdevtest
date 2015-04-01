@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Setup";
+}
+
+<h2>Setup</h2>
+
+<div class="row">
+
+    <div class="col-lg-2">
+        @Html.ActionLink("Remove All Records","Clear")
+    </div>
+    <div class="col-lg-10">
+        <p>Click this link to remove all of the records from the database.  This is done to exercise data access through the entity framework model and to reset the data in the demo.</p>
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-lg-2">
+        @Html.ActionLink("Generate Sample Records", "Generate")
+    </div>
+    <div class="col-lg-10">
+        <p>            Click this link to regenerate sample data in the database.  This is done to exercise data access through the entity framework model and to stage data to be used within the demo.
+</p>
+    </div>
+
+</div>
+
+@if (TempData["Success"] != null)
+{
+    <script type="text/javascript">
+        alert('Success!');
+    </script>
+}

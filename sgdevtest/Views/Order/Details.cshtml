@@ -1,0 +1,89 @@
+﻿@model sgdevtest.Models.OrderDetailViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Order Detail</h2>
+
+
+<div class="row">
+    <div class="row">
+        <div class="col-md-4">
+            <label>Order Number</label>
+        </div>
+        <div class="col-md-8">
+            @Model.OrderItemID
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <label>Order Date</label>
+        </div>
+        <div class="col-md-8">
+            @Model.Date
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <label>Order Total</label>
+        </div>
+        <div class="col-md-8">
+            $@Model.Total
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <label>Customer</label>
+        </div>
+        <div class="col-md-8">
+            @Model.CustomerName
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <table id="sg-order" class="table">
+            <tr>
+                <th>
+                    Product
+                </th>
+                <th>
+                    Price
+                </th>
+                <th>
+                    Quantity
+                </th>
+                <th>
+                    Sub Total
+                </th>
+            </tr>
+
+            @if (Model != null)
+            {
+                foreach (var item in Model.Products)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Count)
+                        </td>
+                        <td>
+                            $@Html.DisplayFor(modelItem => item.SubTotal)
+                        </td>
+                    </tr>
+                }
+            }
+
+        </table>
+    </div>
+</div>

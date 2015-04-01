@@ -1,0 +1,47 @@
+﻿@model sgdevtest.Models.CreateViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+<div class="row">
+    @using (Html.BeginForm("Index", "Order", FormMethod.Post))
+    {
+        <div class="row">
+            <div class="col-md-1">
+                Customer
+            </div>
+            <div class="col-md-9">
+                @Html.DropDownListFor(model => model.Customers, new SelectList(Model.Customers, "Key", "Value"), new { Class = "customer" })
+            </div>
+            <div class="col-md-1">
+                <label class="btn btn-default" id="add">Add Row</label>
+            </div>
+            <div class="col-md-1">
+                <label class="btn btn-default" id="submit">Submit</label>
+            </div>
+        </div>
+        <div class="row">
+
+            <table id="sg-product" class="table">
+                <tbody>
+                    <tr>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                    </tr>
+                    <tr class="fetch">
+                        <td>
+                            @Html.DropDownListFor(model => model.Products, new SelectList(Model.Products, "Key", "Value"), new { Class = "product" })
+                        </td>
+                        <td>
+                            <input type="text" name="quantity">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
